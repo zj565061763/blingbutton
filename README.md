@@ -41,6 +41,25 @@ Android 闪烁按钮，仿映客录制小视频按钮
     app:bbSelectedOutside="80dp" />
 ```xml
 
+```java
+public class MainActivity extends AppCompatActivity implements View.OnClickListener
+{
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        // 切换状态
+        v.setSelected(!v.isSelected());
+    }
+}
+```
+
 # 支持的属性
 ```xml
 <resources>
