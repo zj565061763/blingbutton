@@ -132,6 +132,15 @@ public class FBlingButton extends View
             setCurrentSizeByState();
     }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom)
+    {
+        super.onLayout(changed, left, top, right, bottom);
+
+        if (mSelectedTag)
+            startSelectedAnimator();
+    }
+
     private void setCurrentSizeByState()
     {
         if (mSelectedTag)
@@ -143,13 +152,6 @@ public class FBlingButton extends View
             mCurrentInside = mValueHolder.mNormalInsideSize.get();
             mCurrentOutside = mValueHolder.mNormalOutsideSize.get();
         }
-    }
-
-    public void stop()
-    {
-        stopAnimator();
-        setCurrentSizeByState();
-        invalidate();
     }
 
     private void stopAnimator()
@@ -259,5 +261,12 @@ public class FBlingButton extends View
         final float top = y - radius;
         final float bottom = y + radius;
         return new RectF(left, top, right, bottom);
+    }
+
+    @Override
+    protected void onDetachedFromWindow()
+    {
+        super.onDetachedFromWindow();
+        stopAnimator();
     }
 }
