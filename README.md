@@ -6,6 +6,41 @@ Android 闪烁按钮，仿映客录制小视频按钮
 
 # Demo
 
+
+```xml
+<!-- 默认效果 -->
+<com.sd.lib.blingbutton.FBlingButton
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:onClick="onClick" />
+
+<com.sd.lib.blingbutton.FBlingButton
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_marginTop="5dp"
+    android:onClick="onClick"
+    app:bbColor="@color/colorAccent"
+    app:bbNormalInside="20dp" />
+
+<com.sd.lib.blingbutton.FBlingButton
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:onClick="onClick"
+    app:bbBlingInsideDelta="0dp"
+    app:bbBlingOutsideDelta="-20dp"
+    app:bbSelectedInside="50dp"
+    app:bbSelectedOutside="80dp" />
+
+<com.sd.lib.blingbutton.FBlingButton
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:onClick="onClick"
+    app:bbBlingInsideDelta="10dp"
+    app:bbBlingOutsideDelta="-10dp"
+    app:bbSelectedInside="70dp"
+    app:bbSelectedOutside="80dp" />
+```xml
+
 # 支持的属性
 ```xml
 <resources>
