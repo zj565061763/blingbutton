@@ -5,7 +5,7 @@ Android 闪烁按钮，仿映客录制小视频按钮
 [![](https://jitpack.io/v/zj565061763/blingbutton.svg)](https://jitpack.io/#zj565061763/blingbutton)
 
 # Demo
-
+![](https://github.com/zj565061763/blingbutton/blob/master/screenshot/blingbutton.gif?raw=true)
 
 ```xml
 <!-- 默认效果 -->
