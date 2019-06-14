@@ -234,7 +234,9 @@ public class FBlingButton extends View
         final float radius = mCurrentOutside / 2;
         final RectF rectF = newRectF(x, y, radius);
 
-        rectF.inset(strokeWidth / 2, strokeWidth / 2);
+        final float inset = strokeWidth / 2;
+        rectF.inset(inset, inset);
+
         mPaint.setStrokeWidth(strokeWidth);
         canvas.drawArc(rectF, 0, 360, false, mPaint);
     }
