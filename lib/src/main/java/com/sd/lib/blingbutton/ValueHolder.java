@@ -2,6 +2,7 @@ package com.sd.lib.blingbutton;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 
 class ValueHolder
@@ -21,6 +22,7 @@ class ValueHolder
 
     public final int mStateDuration;
     public final int mBlingDuration;
+    public final int mColor;
 
     public ValueHolder(Context context, AttributeSet attrs)
     {
@@ -48,12 +50,14 @@ class ValueHolder
 
             mStateDuration = a.getInteger(R.styleable.LibBlingButton_bbStateDuration, DEFAULT_DURATION_STATE);
             mBlingDuration = a.getInteger(R.styleable.LibBlingButton_bbBlingDuration, DEFAULT_DURATION_BLING);
+            mColor = a.getInteger(R.styleable.LibBlingButton_bbColor, Color.WHITE);
 
             a.recycle();
         } else
         {
             mStateDuration = DEFAULT_DURATION_STATE;
             mBlingDuration = DEFAULT_DURATION_BLING;
+            mColor = Color.WHITE;
         }
     }
 
