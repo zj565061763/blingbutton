@@ -18,8 +18,8 @@ public class FBlingButton extends View
     private Float mCurrentInside;
     private Float mCurrentOutside;
 
-    private ValueAnimator mAnimatorInsideNS;
-    private ValueAnimator mAnimatorOutsideNS;
+    private ValueAnimator mAnimatorInsideState;
+    private ValueAnimator mAnimatorOutsideState;
     private AnimatorListenerAdapter mAnimatorListenerStateChanged;
 
     private ValueAnimator mAnimatorInsideBling;
@@ -37,6 +37,55 @@ public class FBlingButton extends View
         mPaint.setAntiAlias(true);
         mPaint.setColor(mValueHolder.mColor);
         mPaint.setStyle(Paint.Style.STROKE);
+    }
+
+    private ValueAnimator getAnimatorInsideState()
+    {
+        if (mAnimatorInsideState == null)
+        {
+            mAnimatorInsideState = new ValueAnimator();
+            mAnimatorInsideState.addUpdateListener(getAnimatorUpdateListenerInside());
+            mAnimatorInsideState.setDuration(mValueHolder.mStateDuration);
+            mAnimatorInsideState.addListener(getAnimatorListenerStateChanged());
+        }
+        return mAnimatorInsideState;
+    }
+
+    private ValueAnimator getAnimatorOutsideState()
+    {
+        if (mAnimatorOutsideState == null)
+        {
+            mAnimatorOutsideState = new ValueAnimator();
+            mAnimatorOutsideState.addUpdateListener(getAnimatorUpdateListenerOutside());
+            mAnimatorOutsideState.setDuration(mValueHolder.mStateDuration);
+        }
+        return mAnimatorOutsideState;
+    }
+
+    private ValueAnimator getAnimatorInsideBling()
+    {
+        if (mAnimatorInsideBling == null)
+        {
+            mAnimatorInsideBling = new ValueAnimator();
+            mAnimatorInsideBling.addUpdateListener(getAnimatorUpdateListenerInside());
+            mAnimatorInsideBling.setDuration(mValueHolder.mBlingDuration);
+            mAnimatorInsideBling.setRepeatMode(ValueAnimator.REVERSE);
+            mAnimatorInsideBling.setRepeatCount(-1);
+        }
+        return mAnimatorInsideBling;
+    }
+
+    private ValueAnimator getAnimatorOutsideBling()
+    {
+        if (mAnimatorOutsideBling == null)
+        {
+            mAnimatorOutsideBling = new ValueAnimator();
+            mAnimatorOutsideBling.addUpdateListener(getAnimatorUpdateListenerOutside());
+            mAnimatorOutsideBling.setDuration(mValueHolder.mBlingDuration);
+            mAnimatorOutsideBling.setRepeatMode(ValueAnimator.REVERSE);
+            mAnimatorOutsideBling.setRepeatCount(-1);
+        }
+        return mAnimatorOutsideBling;
     }
 
     private ValueAnimator.AnimatorUpdateListener getAnimatorUpdateListenerInside()
@@ -71,55 +120,6 @@ public class FBlingButton extends View
             };
         }
         return mAnimatorUpdateListenerOutside;
-    }
-
-    private ValueAnimator getAnimatorInsideNS()
-    {
-        if (mAnimatorInsideNS == null)
-        {
-            mAnimatorInsideNS = new ValueAnimator();
-            mAnimatorInsideNS.addUpdateListener(getAnimatorUpdateListenerInside());
-            mAnimatorInsideNS.setDuration(mValueHolder.mStateDuration);
-            mAnimatorInsideNS.addListener(getAnimatorListenerStateChanged());
-        }
-        return mAnimatorInsideNS;
-    }
-
-    private ValueAnimator getAnimatorOutsideNS()
-    {
-        if (mAnimatorOutsideNS == null)
-        {
-            mAnimatorOutsideNS = new ValueAnimator();
-            mAnimatorOutsideNS.addUpdateListener(getAnimatorUpdateListenerOutside());
-            mAnimatorOutsideNS.setDuration(mValueHolder.mStateDuration);
-        }
-        return mAnimatorOutsideNS;
-    }
-
-    private ValueAnimator getAnimatorInsideBling()
-    {
-        if (mAnimatorInsideBling == null)
-        {
-            mAnimatorInsideBling = new ValueAnimator();
-            mAnimatorInsideBling.addUpdateListener(getAnimatorUpdateListenerInside());
-            mAnimatorInsideBling.setDuration(mValueHolder.mBlingDuration);
-            mAnimatorInsideBling.setRepeatMode(ValueAnimator.REVERSE);
-            mAnimatorInsideBling.setRepeatCount(-1);
-        }
-        return mAnimatorInsideBling;
-    }
-
-    private ValueAnimator getAnimatorOutsideBling()
-    {
-        if (mAnimatorOutsideBling == null)
-        {
-            mAnimatorOutsideBling = new ValueAnimator();
-            mAnimatorOutsideBling.addUpdateListener(getAnimatorUpdateListenerOutside());
-            mAnimatorOutsideBling.setDuration(mValueHolder.mBlingDuration);
-            mAnimatorOutsideBling.setRepeatMode(ValueAnimator.REVERSE);
-            mAnimatorOutsideBling.setRepeatCount(-1);
-        }
-        return mAnimatorOutsideBling;
     }
 
     @Override
@@ -177,20 +177,20 @@ public class FBlingButton extends View
 
     private void startSelectedAnimator()
     {
-        getAnimatorInsideNS().setFloatValues(mCurrentInside, mValueHolder.mSelectedInsideSize.get());
-        getAnimatorInsideNS().start();
+        getAnimatorInsideState().setFloatValues(mCurrentInside, mValueHolder.mSelectedInsideSize.get());
+        getAnimatorInsideState().start();
 
-        getAnimatorOutsideNS().setFloatValues(mCurrentOutside, mValueHolder.mSelectedOutsideSize.get());
-        getAnimatorOutsideNS().start();
+        getAnimatorOutsideState().setFloatValues(mCurrentOutside, mValueHolder.mSelectedOutsideSize.get());
+        getAnimatorOutsideState().start();
     }
 
     private void startNormalAnimator()
     {
-        getAnimatorInsideNS().setFloatValues(mCurrentInside, mValueHolder.mNormalInsideSize.get());
-        getAnimatorInsideNS().start();
+        getAnimatorInsideState().setFloatValues(mCurrentInside, mValueHolder.mNormalInsideSize.get());
+        getAnimatorInsideState().start();
 
-        getAnimatorOutsideNS().setFloatValues(mCurrentOutside, mValueHolder.mNormalOutsideSize.get());
-        getAnimatorOutsideNS().start();
+        getAnimatorOutsideState().setFloatValues(mCurrentOutside, mValueHolder.mNormalOutsideSize.get());
+        getAnimatorOutsideState().start();
     }
 
     private AnimatorListenerAdapter getAnimatorListenerStateChanged()
@@ -248,11 +248,11 @@ public class FBlingButton extends View
 
     private void stopAnimator()
     {
-        if (mAnimatorInsideNS != null)
-            mAnimatorInsideNS.cancel();
+        if (mAnimatorInsideState != null)
+            mAnimatorInsideState.cancel();
 
-        if (mAnimatorOutsideNS != null)
-            mAnimatorOutsideNS.cancel();
+        if (mAnimatorOutsideState != null)
+            mAnimatorOutsideState.cancel();
 
         if (mAnimatorInsideBling != null)
             mAnimatorInsideBling.cancel();
