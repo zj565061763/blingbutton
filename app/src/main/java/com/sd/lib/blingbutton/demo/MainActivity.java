@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v)
     {
+        // 切换状态
         v.setSelected(!v.isSelected());
     }
 }
