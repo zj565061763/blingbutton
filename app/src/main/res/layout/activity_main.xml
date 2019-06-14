@@ -6,8 +6,9 @@
 
     <com.sd.lib.blingbutton.FBlingButton
         android:id="@+id/bling_button"
-        android:layout_width="67dp"
-        android:layout_height="67dp"
-        android:background="@color/colorPrimary" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClick" />
 
 </LinearLayout>
