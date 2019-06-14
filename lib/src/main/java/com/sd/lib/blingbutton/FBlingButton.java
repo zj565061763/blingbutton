@@ -109,7 +109,7 @@ public class FBlingButton extends View
         return mAnimatorInsideBling;
     }
 
-    public ValueAnimator getAnimatorOutsideBling()
+    private ValueAnimator getAnimatorOutsideBling()
     {
         if (mAnimatorOutsideBling == null)
         {
