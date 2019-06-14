@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LibBlingButton">
+        <!-- 正常状态内边直径，默认0 -->
+        <attr name="normalInside" format="dimension" />
+
+        <!-- 正常状态外边直径，默认70% -->
+        <attr name="normalOutside" format="dimension" />
+
+        <!-- 选中状态内边直径，默认90% -->
+        <attr name="selectedInside" format="dimension" />
+
+        <!-- 选中状态外边直径，默认100% -->
+        <attr name="selectedOutside" format="dimension" />
+
+        <!-- 闪烁状态内边直径相对于选中状态内边直径的偏移量，默认10% -->
+        <attr name="blingInsideDelta" format="dimension" />
+
+        <!-- 闪烁状态外边直径相对于选中状态外边直径的偏移量，默认0 -->
+        <attr name="blingOutsideDelta" format="dimension" />
+    </declare-styleable>
+
+</resources>
