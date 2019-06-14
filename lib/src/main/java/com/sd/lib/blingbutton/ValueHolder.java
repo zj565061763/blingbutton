@@ -28,26 +28,26 @@ class ValueHolder
         {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LibBlingButton);
 
-            if (a.hasValue(R.styleable.LibBlingButton_normalInside))
-                mNormalInsideSize.set(a.getDimension(R.styleable.LibBlingButton_normalInside, EMPTY_VALUE));
+            if (a.hasValue(R.styleable.LibBlingButton_bbNormalInside))
+                mNormalInsideSize.set(a.getDimension(R.styleable.LibBlingButton_bbNormalInside, EMPTY_VALUE));
 
-            if (a.hasValue(R.styleable.LibBlingButton_normalOutside))
-                mNormalOutsideSize.set(a.getDimension(R.styleable.LibBlingButton_normalOutside, EMPTY_VALUE));
+            if (a.hasValue(R.styleable.LibBlingButton_bbNormalOutside))
+                mNormalOutsideSize.set(a.getDimension(R.styleable.LibBlingButton_bbNormalOutside, EMPTY_VALUE));
 
-            if (a.hasValue(R.styleable.LibBlingButton_selectedInside))
-                mSelectedInsideSize.set(a.getDimension(R.styleable.LibBlingButton_selectedInside, EMPTY_VALUE));
+            if (a.hasValue(R.styleable.LibBlingButton_bbSelectedInside))
+                mSelectedInsideSize.set(a.getDimension(R.styleable.LibBlingButton_bbSelectedInside, EMPTY_VALUE));
 
-            if (a.hasValue(R.styleable.LibBlingButton_selectedOutside))
-                mSelectedOutsideSize.set(a.getDimension(R.styleable.LibBlingButton_selectedOutside, EMPTY_VALUE));
+            if (a.hasValue(R.styleable.LibBlingButton_bbSelectedOutside))
+                mSelectedOutsideSize.set(a.getDimension(R.styleable.LibBlingButton_bbSelectedOutside, EMPTY_VALUE));
 
-            if (a.hasValue(R.styleable.LibBlingButton_blingInsideDelta))
-                mBlingInsideDelta.set(a.getDimension(R.styleable.LibBlingButton_blingInsideDelta, EMPTY_VALUE));
+            if (a.hasValue(R.styleable.LibBlingButton_bbBlingInsideDelta))
+                mBlingInsideDelta.set(a.getDimension(R.styleable.LibBlingButton_bbBlingInsideDelta, EMPTY_VALUE));
 
-            if (a.hasValue(R.styleable.LibBlingButton_blingOutsideDelta))
-                mBlingOutsideDelta.set(a.getDimension(R.styleable.LibBlingButton_blingOutsideDelta, EMPTY_VALUE));
+            if (a.hasValue(R.styleable.LibBlingButton_bbBlingOutsideDelta))
+                mBlingOutsideDelta.set(a.getDimension(R.styleable.LibBlingButton_bbBlingOutsideDelta, EMPTY_VALUE));
 
-            mStateDuration = a.getInteger(R.styleable.LibBlingButton_stateDuration, DEFAULT_DURATION_STATE);
-            mBlingDuration = a.getInteger(R.styleable.LibBlingButton_blingDuration, DEFAULT_DURATION_BLING);
+            mStateDuration = a.getInteger(R.styleable.LibBlingButton_bbStateDuration, DEFAULT_DURATION_STATE);
+            mBlingDuration = a.getInteger(R.styleable.LibBlingButton_bbBlingDuration, DEFAULT_DURATION_BLING);
 
             a.recycle();
         } else
