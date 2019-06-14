@@ -13,9 +13,6 @@ import android.view.View;
 
 public class FBlingButton extends View
 {
-    private static final int DURATION_STATE = 300;
-    private static final int DURATION_BLING = 500;
-
     private final ValueHolder mValueHolder;
     private final Paint mPaint = new Paint();
 
@@ -83,7 +80,7 @@ public class FBlingButton extends View
         {
             mAnimatorInsideNS = new ValueAnimator();
             mAnimatorInsideNS.addUpdateListener(getAnimatorUpdateListenerInside());
-            mAnimatorInsideNS.setDuration(DURATION_STATE);
+            mAnimatorInsideNS.setDuration(mValueHolder.mStateDuration);
             mAnimatorInsideNS.addListener(getAnimatorListenerStateChanged());
         }
         return mAnimatorInsideNS;
@@ -95,7 +92,7 @@ public class FBlingButton extends View
         {
             mAnimatorOutsideNS = new ValueAnimator();
             mAnimatorOutsideNS.addUpdateListener(getAnimatorUpdateListenerOutside());
-            mAnimatorOutsideNS.setDuration(DURATION_STATE);
+            mAnimatorOutsideNS.setDuration(mValueHolder.mStateDuration);
         }
         return mAnimatorOutsideNS;
     }
@@ -106,7 +103,7 @@ public class FBlingButton extends View
         {
             mAnimatorInsideBling = new ValueAnimator();
             mAnimatorInsideBling.addUpdateListener(getAnimatorUpdateListenerInside());
-            mAnimatorInsideBling.setDuration(DURATION_BLING);
+            mAnimatorInsideBling.setDuration(mValueHolder.mBlingDuration);
             mAnimatorInsideBling.setRepeatMode(ValueAnimator.REVERSE);
             mAnimatorInsideBling.setRepeatCount(-1);
         }
@@ -119,7 +116,7 @@ public class FBlingButton extends View
         {
             mAnimatorOutsideBling = new ValueAnimator();
             mAnimatorOutsideBling.addUpdateListener(getAnimatorUpdateListenerOutside());
-            mAnimatorOutsideBling.setDuration(DURATION_BLING);
+            mAnimatorOutsideBling.setDuration(mValueHolder.mBlingDuration);
             mAnimatorOutsideBling.setRepeatMode(ValueAnimator.REVERSE);
             mAnimatorOutsideBling.setRepeatCount(-1);
         }

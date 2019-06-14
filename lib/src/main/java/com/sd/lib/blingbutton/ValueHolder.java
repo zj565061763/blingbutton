@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 class ValueHolder
 {
     public static final float EMPTY_VALUE = Float.MIN_VALUE;
+    public static final int DEFAULT_DURATION_STATE = 300;
+    public static final int DEFAULT_DURATION_BLING = 500;
 
     public final NormalInsideSize mNormalInsideSize = new NormalInsideSize();
     public final NormalOutsideSize mNormalOutsideSize = new NormalOutsideSize();
@@ -16,6 +18,9 @@ class ValueHolder
 
     public final BlingInsideDelta mBlingInsideDelta = new BlingInsideDelta();
     public final BlingOutsideDelta mBlingOutsideDelta = new BlingOutsideDelta();
+
+    public final int mStateDuration;
+    public final int mBlingDuration;
 
     public ValueHolder(Context context, AttributeSet attrs)
     {
@@ -41,7 +46,14 @@ class ValueHolder
             if (a.hasValue(R.styleable.LibBlingButton_blingOutsideDelta))
                 mBlingOutsideDelta.set(a.getDimension(R.styleable.LibBlingButton_blingOutsideDelta, EMPTY_VALUE));
 
+            mStateDuration = a.getInteger(R.styleable.LibBlingButton_stateDuration, DEFAULT_DURATION_STATE);
+            mBlingDuration = a.getInteger(R.styleable.LibBlingButton_blingDuration, DEFAULT_DURATION_BLING);
+
             a.recycle();
+        } else
+        {
+            mStateDuration = DEFAULT_DURATION_STATE;
+            mBlingDuration = DEFAULT_DURATION_BLING;
         }
     }
 

@@ -19,6 +19,12 @@
 
         <!-- 闪烁状态外边直径相对于选中状态外边直径的偏移量，默认0 -->
         <attr name="blingOutsideDelta" format="dimension" />
+
+        <!-- 状态切换的动画时长，默认300毫秒 -->
+        <attr name="stateDuration" format="integer" />
+
+        <!-- 闪烁一次动画时长，默认500毫秒 -->
+        <attr name="blingDuration" format="integer" />
     </declare-styleable>
 
 </resources>
