@@ -154,19 +154,25 @@ public class FBlingButton extends View
         }
     }
 
-    private void stopAnimator()
+    @Override
+    public void setSelected(boolean selected)
     {
-        if (mAnimatorInsideNS != null)
-            mAnimatorInsideNS.cancel();
+        super.setSelected(selected);
 
-        if (mAnimatorOutsideNS != null)
-            mAnimatorOutsideNS.cancel();
+        final boolean old = mSelectedTag;
+        if (old != selected)
+        {
+            mSelectedTag = selected;
+            stopAnimator();
 
-        if (mAnimatorInsideBling != null)
-            mAnimatorInsideBling.cancel();
-
-        if (mAnimatorOutsideBling != null)
-            mAnimatorOutsideBling.cancel();
+            if (selected)
+            {
+                startSelectedAnimator();
+            } else
+            {
+                startNormalAnimator();
+            }
+        }
     }
 
     private void startSelectedAnimator()
@@ -175,6 +181,15 @@ public class FBlingButton extends View
         getAnimatorInsideNS().start();
 
         getAnimatorOutsideNS().setFloatValues(mCurrentOutside, mValueHolder.mSelectedOutsideSize.get());
+        getAnimatorOutsideNS().start();
+    }
+
+    private void startNormalAnimator()
+    {
+        getAnimatorInsideNS().setFloatValues(mCurrentInside, mValueHolder.mNormalInsideSize.get());
+        getAnimatorInsideNS().start();
+
+        getAnimatorOutsideNS().setFloatValues(mCurrentOutside, mValueHolder.mNormalOutsideSize.get());
         getAnimatorOutsideNS().start();
     }
 
@@ -207,36 +222,6 @@ public class FBlingButton extends View
         return mAnimatorListenerStateChanged;
     }
 
-    private void startNormalAnimator()
-    {
-        getAnimatorInsideNS().setFloatValues(mCurrentInside, mValueHolder.mNormalInsideSize.get());
-        getAnimatorInsideNS().start();
-
-        getAnimatorOutsideNS().setFloatValues(mCurrentOutside, mValueHolder.mNormalOutsideSize.get());
-        getAnimatorOutsideNS().start();
-    }
-
-    @Override
-    public void setSelected(boolean selected)
-    {
-        super.setSelected(selected);
-
-        final boolean old = mSelectedTag;
-        if (old != selected)
-        {
-            mSelectedTag = selected;
-            stopAnimator();
-
-            if (selected)
-            {
-                startSelectedAnimator();
-            } else
-            {
-                startNormalAnimator();
-            }
-        }
-    }
-
     @Override
     protected void onDraw(Canvas canvas)
     {
@@ -254,6 +239,28 @@ public class FBlingButton extends View
         canvas.drawArc(rectF, 0, 360, false, mPaint);
     }
 
+    @Override
+    protected void onDetachedFromWindow()
+    {
+        super.onDetachedFromWindow();
+        stopAnimator();
+    }
+
+    private void stopAnimator()
+    {
+        if (mAnimatorInsideNS != null)
+            mAnimatorInsideNS.cancel();
+
+        if (mAnimatorOutsideNS != null)
+            mAnimatorOutsideNS.cancel();
+
+        if (mAnimatorInsideBling != null)
+            mAnimatorInsideBling.cancel();
+
+        if (mAnimatorOutsideBling != null)
+            mAnimatorOutsideBling.cancel();
+    }
+
     private static RectF newRectF(float x, float y, float radius)
     {
         final float left = x - radius;
@@ -261,12 +268,5 @@ public class FBlingButton extends View
         final float top = y - radius;
         final float bottom = y + radius;
         return new RectF(left, top, right, bottom);
-    }
-
-    @Override
-    protected void onDetachedFromWindow()
-    {
-        super.onDetachedFromWindow();
-        stopAnimator();
     }
 }
